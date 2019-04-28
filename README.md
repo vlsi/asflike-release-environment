@@ -17,6 +17,7 @@ Usage
 1. Install [Vagrant](https://www.vagrantup.com/)
 1. Boot the services: `vagrant up`
 1. Shut down docker images: `vagrant destroy`
+1. All the services can be recreated (==all the deployed files are removed) via `./recreate.sh`
 
 URLs
 ----
