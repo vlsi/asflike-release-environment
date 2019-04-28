@@ -27,7 +27,7 @@ Login: `test`, password: `test`
 
 * SVN web: http://127.0.0.1/svn
 * SVN: svn://127.0.0.1:3960
-* Nexus: not implemented. Nexus OSS does not support staging which is crucial since ASF Nexus requires staging.
+* Nexus: http://localhost:8080/service/local/staging/profiles
 * Git: not implemented. [Gogs](https://hub.docker.com/r/gogs/gogs) would likely suit.
 
 License
@@ -37,6 +37,9 @@ Apache License 2.0
 
 Changelog
 ---------
+
+2019-04-28
+* Nexus stub via https://github.com/vlsi/nexus-stub
 
 2019-04-16
 * SVN repository

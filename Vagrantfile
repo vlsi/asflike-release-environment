@@ -35,6 +35,14 @@ Vagrant.configure("2") do |config|
         run: {inline: "vagrant docker-exec svn -- chown -R apache:apache /home/svn/dist"}
     vm.trigger.after :up, info: 'Creating dist folders',
         on_error: :continue,
-        run: {inline: "vagrant docker-exec svn -- svnmucc -m 'Init' --root-url file:///home/svn/dist mkdir dev mkdir dev/#{tlp} mkdir release mkdir release/#{tlp}"}
+        run: {inline: "vagrant docker-exec svn -- svnmucc -m 'Init' --root-url file:///home/svn/dist mkdir dev mkdir dev/#{tlp} mkdir release mkdir release/#{tlp} mkdir release/#{tlp}/binaries mkdir release/#{tlp}/sources"}
+  end
+  config.vm.define "nexus" do |vm|
+    vm.vm.provider "docker" do |d|
+      d.image = "vlsi/nexus-stub"
+      d.name = "nexus-stub"
+      d.ports = ['8080:8080']
+      d.env = {"GROUP_IDS": "org.apache.jmeter"}
+    end
   end
 end
