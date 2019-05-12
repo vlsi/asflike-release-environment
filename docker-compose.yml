@@ -1,0 +1,23 @@
+version: "3"
+services:
+  vcs:
+    container_name: vcs-server
+    build:
+      context: ./vcs-server
+    ports:
+    - 80:80
+    - 3960:3960
+    - 9418:9418
+  nexus:
+    container_name: nexus-stub
+    image: vlsi/nexus-stub
+    environment:
+      GROUP_IDS: org.apache.jmeter
+    ports:
+    - 8080:8080
+  sonar:
+    container_name: sonarqube
+    image: sonarqube:7.4-community
+    entrypoint: echo "sonar is not started by default. Comment <entrypoint> to enable it"
+    ports:
+    - 9000:9000

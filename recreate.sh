@@ -1,4 +1,6 @@
 #!/bin/sh
 
-vagrant destroy -f
-vagrant up
+
+docker-compose stop
+docker-compose rm -f
+docker-compose up
