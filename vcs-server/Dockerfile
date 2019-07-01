@@ -2,11 +2,12 @@ FROM elleflorio/svn-server:latest
 
 RUN apk add --no-cache git-daemon
 ARG PROJECT_NAME=jmeter
+ARG EXTRA_SVN_DIRS=
 
 RUN svnadmin create /home/svn/dist &&\
     chown -R apache:apache /home/svn/dist &&\
     htpasswd -b /etc/subversion/passwd test test &&\
-    svnmucc -m 'Init' --root-url file:///home/svn/dist mkdir dev mkdir dev/$PROJECT_NAME mkdir release mkdir release/$PROJECT_NAME mkdir release/$PROJECT_NAME/binaries mkdir release/$PROJECT_NAME/sources
+    svnmucc -m 'Init' --root-url file:///home/svn/dist mkdir dev mkdir dev/$PROJECT_NAME mkdir release mkdir release/$PROJECT_NAME $EXTRA_SVN_DIRS
 
 RUN mkdir /home/git/ &&\
     git config --global user.email 'test@example.com' &&\

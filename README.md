@@ -18,6 +18,14 @@ Usage
 1. Shut down docker images: `docker-compose stop`
 1. All the services can be recreated (==all the deployed files are removed) via `./recreate.sh`
 
+Switching TLPs
+--------------
+
+Differnet TLPs have different dist.apache.org structure, and by default only minimal set of folders is created
+
+    ./recreate.sh calcite # Rebuild SVN image with Calcite folders, and restart services
+    ./recreate.sh jmeter # Rebuild SVN image with JMeter folders, and restart services
+
 URLs
 ----
 
@@ -38,6 +46,9 @@ Apache License 2.0
 
 Changelog
 ---------
+
+2019-06-30
+* Multi-environment mode (for different SVN layout)
 
 2019-05-12
 * Sonarqube

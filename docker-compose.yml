@@ -2,17 +2,24 @@ version: "3"
 services:
   vcs:
     container_name: vcs-server
+    env_file:
+      - .env
     build:
       context: ./vcs-server
+      args:
+        PROJECT_NAME: $PROJECT_NAME
+        EXTRA_SVN_DIRS: $EXTRA_SVN_DIRS
     ports:
     - 80:80
     - 3960:3960
     - 9418:9418
   nexus:
     container_name: nexus-stub
+    env_file:
+      - .env
     image: vlsi/nexus-stub
     environment:
-      GROUP_IDS: org.apache.jmeter
+      GROUP_IDS: org.apache.$PROJECT_NAME
     ports:
     - 8080:8080
   sonar:
