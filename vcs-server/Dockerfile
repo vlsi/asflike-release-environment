@@ -1,4 +1,4 @@
-FROM elleflorio/svn-server:latest
+FROM elleflorio/svn-server@sha256:cbd1b55dcc6973e37850e1f80f8c66165a7fbd73c26c13bf832bc18e8c232388
 
 RUN apk add --no-cache git-daemon
 ARG PROJECT_NAME=jmeter
