@@ -15,7 +15,7 @@ RUN mkdir /home/git/ &&\
     cd /home/git &&\
     git clone --bare empty.git $PROJECT_NAME.git &&\
     git clone --bare empty.git $PROJECT_NAME-site.git &&\
-    git clone --bare empty.git $PROJECT_NAME-preview.git
+    git clone --bare empty.git $PROJECT_NAME-site-preview.git
 
 ADD git/ /etc/services.d/git/
 
