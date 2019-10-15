@@ -17,7 +17,7 @@ services:
     container_name: nexus-stub
     env_file:
       - .env
-    image: vlsi/nexus-stub
+    image: vlsi/nexus-stub:v1.0
     environment:
       GROUP_IDS: org.apache.$PROJECT_NAME
     ports:
