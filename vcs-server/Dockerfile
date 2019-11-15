@@ -4,7 +4,12 @@ RUN apk add --no-cache git-daemon
 ARG PROJECT_NAME=jmeter
 ARG EXTRA_SVN_DIRS=
 
+ADD dav_svn.conf /etc/apache2/conf.d/dav_svn.conf
+
 RUN svnadmin create /home/svn/dist &&\
+    sed -i '/\[general\]/ a\n\
+anon-access = none\n\
+auth-access = write' /home/svn/dist/conf/svnserve.conf &&\
     chown -R apache:apache /home/svn/dist &&\
     htpasswd -b /etc/subversion/passwd test test &&\
     svnmucc -m 'Init' --root-url file:///home/svn/dist mkdir dev mkdir dev/$PROJECT_NAME mkdir release mkdir release/$PROJECT_NAME $EXTRA_SVN_DIRS
