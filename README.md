@@ -47,6 +47,9 @@ Apache License 2.0
 Changelog
 ---------
 
+2019-11-15
+* Readonly access to SVN repositories for anynymous users
+
 2019-06-30
 * Multi-environment mode (for different SVN layout)
 
