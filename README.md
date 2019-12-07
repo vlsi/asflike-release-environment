@@ -24,6 +24,7 @@ Switching TLPs
 Differnet TLPs have different dist.apache.org structure, and by default only minimal set of folders is created
 
     ./recreate.sh calcite # Rebuild SVN image with Calcite folders, and restart services
+    ./recreate.sh calcite-avatica # Rebuild SVN image with Calcite Avatica folders, and restart services
     ./recreate.sh jmeter # Rebuild SVN image with JMeter folders, and restart services
 
 URLs
@@ -46,6 +47,9 @@ Apache License 2.0
 
 Changelog
 ---------
+
+2019-12-07
+* Allow to cusomize Git and SVN repository names
 
 2019-11-15
 * Readonly access to SVN repositories for anynymous users

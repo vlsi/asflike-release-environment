@@ -7,8 +7,9 @@ services:
     build:
       context: ./vcs-server
       args:
-        PROJECT_NAME: $PROJECT_NAME
-        EXTRA_SVN_DIRS: $EXTRA_SVN_DIRS
+      - SVN_NAME
+      - GIT_NAME
+      - EXTRA_SVN_DIRS
     ports:
     - 80:80
     - 3960:3960
@@ -19,7 +20,7 @@ services:
       - .env
     image: vlsi/nexus-stub:v1.0
     environment:
-      GROUP_IDS: org.apache.$PROJECT_NAME
+      GROUP_IDS: org.apache.$PACKAGE_NAME
     ports:
     - 8080:8080
   sonar:
