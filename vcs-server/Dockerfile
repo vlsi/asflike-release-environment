@@ -8,13 +8,13 @@ ARG SVN_NAME=
 
 ADD dav_svn.conf /etc/apache2/conf.d/dav_svn.conf
 
-RUN svnadmin create /home/svn/dist &&\
+RUN [ -z "$SVN_NAME" ] || (svnadmin create /home/svn/dist &&\
     sed -i '/\[general\]/ a\n\
 anon-access = none\n\
 auth-access = write' /home/svn/dist/conf/svnserve.conf &&\
     chown -R apache:apache /home/svn/dist &&\
     htpasswd -b /etc/subversion/passwd test test &&\
-    svnmucc -m 'Init' --root-url file:///home/svn/dist mkdir dev mkdir dev/$SVN_NAME mkdir release mkdir release/$SVN_NAME $EXTRA_SVN_DIRS
+    svnmucc -m 'Init' --root-url file:///home/svn/dist mkdir dev mkdir dev/$SVN_NAME mkdir release mkdir release/$SVN_NAME $EXTRA_SVN_DIRS ) || :
 
 RUN mkdir /home/git/ &&\
     git config --global user.email 'test@example.com' &&\

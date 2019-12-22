@@ -20,7 +20,7 @@ services:
       - .env
     image: vlsi/nexus-stub:v1.0
     environment:
-      GROUP_IDS: org.apache.$PACKAGE_NAME
+      GROUP_IDS: $NEXUS_GROUP
     ports:
     - 8080:8080
   sonar:

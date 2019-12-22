@@ -48,6 +48,9 @@ Apache License 2.0
 Changelog
 ---------
 
+2019-12-22
+* Skip initialization of SVN server when SVN_NAME is empty
+
 2019-12-07
 * Allow to cusomize Git and SVN repository names
 
