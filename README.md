@@ -26,6 +26,7 @@ Differnet TLPs have different dist.apache.org structure, and by default only min
     ./recreate.sh calcite # Rebuild SVN image with Calcite folders, and restart services
     ./recreate.sh calcite-avatica # Rebuild SVN image with Calcite Avatica folders, and restart services
     ./recreate.sh jmeter # Rebuild SVN image with JMeter folders, and restart services
+    ./recreate.sh javacc # Rebuild SVN image with JavaCC folders, and restart services
 
 URLs
 ----
