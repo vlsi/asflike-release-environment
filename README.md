@@ -28,6 +28,7 @@ Differnet TLPs have different dist.apache.org structure, and by default only min
     ./recreate.sh jmeter # Rebuild SVN image with JMeter folders, and restart services
     ./recreate.sh javacc # Rebuild SVN image with JavaCC folders, and restart services
     ./recreate.sh darklaf # Rebuild SVN image with Darklaf folders, and restart services
+    ./recreate.sh pgjdbc # Rebuild image with pgjdbc folders, and restart services
 
 URLs
 ----
