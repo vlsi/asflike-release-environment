@@ -51,6 +51,9 @@ Apache License 2.0
 Changelog
 ---------
 
+2020-07-29
+* Allow specification of default branch name with GIT_DEFAULT_BRANCH
+
 2019-12-22
 * Skip initialization of SVN server when SVN_NAME is empty
 
