@@ -10,6 +10,7 @@ services:
       - SVN_NAME
       - GIT_NAME
       - EXTRA_SVN_DIRS
+      - GIT_DEFAULT_BRANCH
     ports:
     - 80:80
     - 3960:3960

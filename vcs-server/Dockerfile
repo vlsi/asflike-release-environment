@@ -5,6 +5,7 @@ RUN apk add --no-cache git-daemon
 ARG EXTRA_SVN_DIRS=
 ARG GIT_NAME=
 ARG SVN_NAME=
+ARG GIT_DEFAULT_BRANCH=master
 
 ADD dav_svn.conf /etc/apache2/conf.d/dav_svn.conf
 
@@ -18,7 +19,9 @@ auth-access = write' /home/svn/dist/conf/svnserve.conf &&\
 
 RUN mkdir /home/git/ &&\
     git config --global user.email 'test@example.com' &&\
-    git init /home/git/empty.git && cd /home/git/empty.git && git commit --allow-empty --message "Initial commit" && git branch gh-pages && git branch asf-site &&\
+    git init /home/git/empty.git && cd /home/git/empty.git &&\
+    ([ "x$GIT_DEFAULT_BRANCH" = "xmaster" ] || git checkout -b "$GIT_DEFAULT_BRANCH")&&\
+    git commit --allow-empty --message "Initial commit" && git branch gh-pages && git branch asf-site &&\
     cd /home/git &&\
     git clone --bare empty.git $GIT_NAME.git &&\
     git clone --bare empty.git $GIT_NAME-site.git &&\
