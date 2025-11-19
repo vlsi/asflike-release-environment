@@ -1,3 +1,0 @@
-#!/usr/bin/with-contenv sh
-
-exec /usr/bin/git daemon --base-path=/home/git --export-all --enable=receive-pack --reuseaddr --informative-errors --verbose -- /home/git;
