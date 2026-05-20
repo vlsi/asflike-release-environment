@@ -21,14 +21,15 @@ Usage
 Switching TLPs
 --------------
 
-Differnet TLPs have different dist.apache.org structure, and by default only minimal set of folders is created
+Different TLPs have different dist.apache.org structure, and by default only minimal set of folders is created
 
-    ./recreate.sh calcite # Rebuild SVN image with Calcite folders, and restart services
+    ./recreate.sh autostyle       # Rebuild image with Autostyle folders, and restart services
+    ./recreate.sh calcite         # Rebuild SVN image with Calcite folders, and restart services
     ./recreate.sh calcite-avatica # Rebuild SVN image with Calcite Avatica folders, and restart services
-    ./recreate.sh jmeter # Rebuild SVN image with JMeter folders, and restart services
-    ./recreate.sh javacc # Rebuild SVN image with JavaCC folders, and restart services
-    ./recreate.sh darklaf # Rebuild SVN image with Darklaf folders, and restart services
-    ./recreate.sh pgjdbc # Rebuild image with pgjdbc folders, and restart services
+    ./recreate.sh darklaf         # Rebuild SVN image with Darklaf folders, and restart services
+    ./recreate.sh javacc          # Rebuild SVN image with JavaCC folders, and restart services
+    ./recreate.sh jmeter          # Rebuild SVN image with JMeter folders, and restart services
+    ./recreate.sh pgjdbc          # Rebuild image with pgjdbc folders, and restart services
 
 URLs
 ----
@@ -37,10 +38,15 @@ Note: Docker uses IPv4, so `localhost` might not work.
 
 Login: `test`, password: `test`
 
-* SVN web: http://127.0.0.1/svn
+* SVN web (Apache + `mod_dav_svn`): http://127.0.0.1/svn
 * SVN: svn://127.0.0.1:3960
 * Nexus: http://localhost:8080/service/local/staging/profiles
 * Git: git://127.0.0.1/
+
+Sonarqube is optional and disabled by default. To start it, enable the `sonar` profile:
+
+    docker-compose --profile sonar up
+
 * Sonarqube: http://127.0.0.1:9000
 
 License
@@ -51,11 +57,19 @@ Apache License 2.0
 Changelog
 ---------
 
+2025-11-19
+* Gate `docker compose up --wait` readiness on per-service healthchecks (incl. a sidecar for the distroless Nexus stub)
+* Restore HTTP DAV access to SVN (`http://127.0.0.1/svn`) so Apache release tooling (`prepareVote`, `svnmucc`) keeps working
+* Bump nexus-stub / svn-server / git-server base images
+* Add Apache Calcite release dry-run GitHub Actions workflow
+* Move Sonarqube behind the `sonar` Compose profile (off by default)
+* Add configuration profiles for Autostyle, Darklaf, JavaCC, pgjdbc
+
 2019-12-22
 * Skip initialization of SVN server when SVN_NAME is empty
 
 2019-12-07
-* Allow to cusomize Git and SVN repository names
+* Allow to customize Git and SVN repository names
 
 2019-11-15
 * Readonly access to SVN repositories for anynymous users
