@@ -11,6 +11,12 @@ services:
     ports:
       - 80:80
       - 3960:3960
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/svn/dist/"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+      start_period: 2s
   git:
     container_name: git-server
     env_file:
@@ -21,6 +27,12 @@ services:
         - GIT_NAME
     ports:
       - 9418:9418
+    healthcheck:
+      test: ["CMD-SHELL", "git ls-remote git://127.0.0.1/empty.git"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+      start_period: 2s
   nexus:
     container_name: nexus-stub
     env_file:
@@ -30,6 +42,21 @@ services:
       GROUP_IDS: $NEXUS_GROUP
     ports:
       - 8080:8080
+  nexus-ready:
+    # vlsi/nexus-stub uses a distroless base (no shell/curl/wget),
+    # so we expose its readiness via this sidecar's healthcheck.
+    container_name: nexus-stub-ready
+    image: curlimages/curl:8.10.1
+    depends_on:
+      nexus:
+        condition: service_started
+    command: ["sleep", "infinity"]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS -o /dev/null http://nexus:8080/service/local/staging/profiles"]
+      interval: 2s
+      timeout: 5s
+      retries: 60
+      start_period: 2s
   sonar:
     profiles:
       - sonar
