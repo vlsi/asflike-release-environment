@@ -5,7 +5,7 @@ ARG GIT_NAME=
 RUN apk --no-cache add git-daemon &&\
     mkdir /home/git/ &&\
     git config --global user.email 'test@example.com' &&\
-    git init /home/git/empty.git && cd /home/git/empty.git && git commit --allow-empty --message "Initial commit" && git branch gh-pages && git branch asf-site &&\
+    git init -b main /home/git/empty.git && cd /home/git/empty.git && git commit --allow-empty --message "Initial commit" && git branch gh-pages && git branch asf-site &&\
     cd /home/git &&\
     git clone --bare empty.git $GIT_NAME.git &&\
     git clone --bare empty.git $GIT_NAME-site.git &&\
