@@ -4,7 +4,7 @@ if [ -f ".env_$1" ]
 then
     echo "Switching to $1"
     cp .env_$1 .env
-    docker-compose build vcs
+    docker-compose build svn git
 fi
 
 docker-compose stop
